@@ -10,7 +10,7 @@ import Table from "../../components/admin/DashboardTable";
 import { useSelector } from "react-redux";
 import { UserReducerInitialState } from "../../types/reducer-types";
 import { useStatsQuery } from "../../redux/api/dashboardAPI";
-import { Navigate } from "react-router-dom";
+
 import { Skeleton } from "../../components/Loader";
 
 
@@ -18,7 +18,7 @@ import { Skeleton } from "../../components/Loader";
 const Dashboard = () => {
   const { user } = useSelector((state: {userReducer: UserReducerInitialState}) => state.userReducer);
 
-  const { isLoading, data, isError } = useStatsQuery(user?._id!);
+  const { isLoading, data } = useStatsQuery(user?._id!);
 
   const stats = data?.stats!;
 

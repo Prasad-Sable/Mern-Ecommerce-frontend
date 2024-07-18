@@ -6,8 +6,8 @@ import { useSelector } from "react-redux";
 import { useMyOrdersQuery } from "../redux/api/orderAPI";
 import { Skeleton } from "../components/Loader";
 import toast from "react-hot-toast";
-import { CustomError } from "../types/api-types";
-import { CartReducerInitialState, UserReducerInitialState } from "../types/reducer-types";
+import { CustomError } from "../types/api-types"
+import { RootState } from "../redux/store";
 
 type DataType= {
   _id:string;
@@ -46,7 +46,7 @@ const column: Column<DataType>[] = [
 ]
 
 const Orders = () => {
-  const { user } = useSelector((state:{userReducer: UserReducerInitialState}) => state.userReducer);
+  const { user } = useSelector((state:RootState) => state.userReducer);
 
   const { isLoading, data, isError, error } = useMyOrdersQuery(user?._id!);
   const [rows,setRows] = useState<DataType[]>([])
